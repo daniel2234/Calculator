@@ -31,10 +31,10 @@ class ViewController: UIViewController {
             enterButton()
         }
         switch operation{
-        case "×":performOperation({ (op1: Double, op2:Double) -> Double in return op1 * op2})
-        case "÷":performOperation({ (op1: Double, op2:Double) -> Double in return op1 / op2})
-        case "−":performOperation({ (op1: Double, op2:Double) -> Double in return op1 - op2})
-        case "+":performOperation({ (op1: Double, op2:Double) -> Double in return op1 + op2})
+        case "×":performOperation({ $0 * $1 })
+        case "÷":performOperation({ $1 / $0 })
+        case "−":performOperation({ $1 - $0 })
+        case "+":performOperation({ $0 + $1 })
         default:break
         }
         
@@ -47,7 +47,6 @@ class ViewController: UIViewController {
             enterButton()
         }
     }
-    
     
     // make and internal stack of numbers
     var operandStack = Array<Double>()

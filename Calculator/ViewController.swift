@@ -31,15 +31,23 @@ class ViewController: UIViewController {
             enterButton()
         }
         switch operation{
-            case "×":
-            if operandStack.count >= 2 {
-                displayValue = operandStack.removeLast() * operandStack.removeLast()
-                enterButton()
-            }
+        case "×":performOperation({ (op1: Double, op2:Double) -> Double in return op1 * op2})
+        case "÷":performOperation({ (op1: Double, op2:Double) -> Double in return op1 / op2})
+        case "−":performOperation({ (op1: Double, op2:Double) -> Double in return op1 - op2})
+        case "+":performOperation({ (op1: Double, op2:Double) -> Double in return op1 + op2})
         default:break
         }
-    
+        
     }
+    
+    func performOperation(operation:(Double,Double) -> Double){
+        if operandStack.count >= 2{
+            //removes everything from the array once it appends
+            displayValue = operation(operandStack.removeLast(),operandStack.removeLast())
+            enterButton()
+        }
+    }
+    
     
     // make and internal stack of numbers
     var operandStack = Array<Double>()
@@ -60,7 +68,5 @@ class ViewController: UIViewController {
             userIsInTheMiddleOfTypeANumber = false
         }
     }
-  
-
 }
 
